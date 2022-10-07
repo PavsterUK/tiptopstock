@@ -1,5 +1,6 @@
 import PersistentDrawerLeft from "./components/UI/PersistentDrawerLeft";
 import styles from "./App.module.css";
+import StockItemModal from "./components/stock/StockItemModal";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <div className={styles.searchBox}>
         <input placeholder="Search" />
       </div>
-      <div className={styles.resultList}>
+      {/* <div className={styles.resultList}>
         <ul>
           <li>
             TURNING INSERTS CNMG120408
@@ -26,7 +27,8 @@ function App() {
             TURNING INSERTS CNMG120408
           </li>
         </ul>
-      </div>
+      </div> */}
+      <StockItemModal/>
     </div>
   );
 }
