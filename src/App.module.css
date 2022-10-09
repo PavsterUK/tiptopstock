@@ -34,6 +34,8 @@
 .resultList {
   width: 50vw;
   border: 1px solid red;
+  flex-grow: 1;
+  overflow: auto;
 }
 
 .resultList ul {
@@ -49,5 +51,5 @@
 
 .resultList li:hover {
     cursor: pointer;
-    background-color: #ffdede;
+    background-color: #ffc0c0;
 } 
