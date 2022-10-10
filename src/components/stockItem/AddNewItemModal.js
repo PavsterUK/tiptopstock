@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import NewItemForm from "./NewItemForm";
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 
+
 const style = {
   position: "absolute",
   top: "30%",
