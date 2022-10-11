@@ -33,7 +33,6 @@
 
 .resultList {
   width: 50vw;
-  border: 1px solid red;
   flex-grow: 1;
   overflow: auto;
 }
@@ -46,7 +45,9 @@
 
 .resultList li {
     padding: .5em;
-    border-bottom: 1px solid grey;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-top: 5px;
 }
 
 .resultList li:hover {

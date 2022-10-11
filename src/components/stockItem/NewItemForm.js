@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import styles from "./NewItemForm.module.css";
 
 export default function NewItemForm() {
   const [value, setValue] = React.useState("Controlled");
@@ -23,7 +24,7 @@ export default function NewItemForm() {
       noValidate
       autoComplete="off"
     >
-      <div>
+      <div className={styles.inputTabs}>
         <TextField
           id="outlined-multiline-flexible"
           label="Item Name/Code"
@@ -66,23 +67,80 @@ export default function NewItemForm() {
           label="Supplier/Purchaser Email"
           defaultValue="email@gmail.com"
         />
-
         <TextField
-          id="outlined-select-currency"
-          select
-          label="Suitable materials"
-          onChange={handleChange}
-        >
-          <MenuItem sx={{".MuiMenuItem-gutters": {
-            backgroundColor: "white !important"
-          } }} >
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox/>}
-                label="Label"
-              />
-            </FormGroup>
-          </MenuItem>
+          id="outlined-multiline-flexible"
+          label="Vendor"
+          defaultValue="RotaVal Internal"
+        />
+
+        <TextField select label="Suitable materials" onChange={handleChange}>
+          <div className={styles.blue}>
+            <MenuItem>
+              <FormGroup>
+                <FormControlLabel
+                  sx={{ color: "white" }}
+                  control={<Checkbox sx={{ color: "white" }} />}
+                  label="P (Mild Steel)"
+                />
+              </FormGroup>
+            </MenuItem>
+          </div>
+
+          <div className={styles.yellow}>
+            <MenuItem>
+              <FormGroup>
+                <FormControlLabel
+                  sx={{ color: "white" }}
+                  control={<Checkbox sx={{ color: "white" }} />}
+                  label="M (Stainless St.)"
+                />
+              </FormGroup>
+            </MenuItem>
+          </div>
+          <div className={styles.red}>
+            <MenuItem>
+              <FormGroup>
+                <FormControlLabel
+                  sx={{ color: "white" }}
+                  control={<Checkbox sx={{ color: "white" }} />}
+                  label="K (Cast Iron)"
+                />
+              </FormGroup>
+            </MenuItem>
+          </div>
+          <div className={styles.green}>
+            <MenuItem>
+              <FormGroup>
+                <FormControlLabel
+                  sx={{ color: "white" }}
+                  control={<Checkbox sx={{ color: "white" }} />}
+                  label="N (Aluminium)"
+                />
+              </FormGroup>
+            </MenuItem>
+          </div>
+          <div className={styles.orange}>
+            <MenuItem>
+              <FormGroup>
+                <FormControlLabel
+                  sx={{ color: "white" }}
+                  control={<Checkbox sx={{ color: "white" }} />}
+                  label="S (SuperAlloys)"
+                />
+              </FormGroup>
+            </MenuItem>
+          </div>
+          <div className={styles.grey}>
+            <MenuItem>
+              <FormGroup>
+                <FormControlLabel
+                  sx={{ color: "white" }}
+                  control={<Checkbox sx={{ color: "white" }} />}
+                  label="H (Hard Iron/Steel)"
+                />
+              </FormGroup>
+            </MenuItem>
+          </div>
         </TextField>
       </div>
 
