@@ -8,12 +8,26 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import styles from "./NewItemForm.module.css";
 
+const materials = {
+  p: false,
+  m: false,
+  k: false,
+  n: false,
+  s: false,
+  h: false,
+};
+
 export default function NewItemForm() {
   const [value, setValue] = React.useState("Controlled");
+  const [checkedBoxes, setCheckedBoxes] = React.useState(materials);
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  const handleCheckbox = (e) => {
+   console.log(e.target.checked)
+};
 
   return (
     <Box
@@ -79,7 +93,12 @@ export default function NewItemForm() {
               <FormGroup>
                 <FormControlLabel
                   sx={{ color: "white" }}
-                  control={<Checkbox sx={{ color: "white" }} />}
+                  control={
+                    <Checkbox
+                      onChange={handleCheckbox}
+                      sx={{ color: "white" }}
+                    />
+                  }
                   label="P (Mild Steel)"
                 />
               </FormGroup>

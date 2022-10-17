@@ -49,6 +49,7 @@ export default function AddNewItemModal() {
             sx={{
               position: "absolute",
               zIndex: "100",
+              color: "#fff !important",
               backgroundColor: "red !important",
               right: "0",
               top: "0",

@@ -25,8 +25,10 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    
   },
   appBar: {
+    backgroundColor: "#e3001b",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -49,9 +51,13 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    
+    
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: "#e3001b",
+    color: "white"
   },
   drawerHeader: {
     display: "flex",
@@ -60,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
+    
   },
   content: {
     flexGrow: 1,
@@ -101,6 +108,7 @@ export default function PersistentDrawerLeft() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        
       >
         <Toolbar>
           <IconButton
