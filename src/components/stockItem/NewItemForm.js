@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useReducer } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -8,7 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import styles from "./NewItemForm.module.css";
 
-const materials = {
+const checkedMaterials = {
   p: false,
   m: false,
   k: false,
@@ -17,17 +18,30 @@ const materials = {
   h: false,
 };
 
-export default function NewItemForm() {
-  const [value, setValue] = React.useState("Controlled");
-  const [checkedBoxes, setCheckedBoxes] = React.useState(materials);
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  const handleCheckbox = (e) => {
-   console.log(e.target.checked)
+const itemData = {
+  itemName: "CNMG120408-WSM20S",
+  itemBrand: "Walter",
+  description: "Brief Description",
+  currentQty: 10,
+  minQty: 5,
+  itemLocation: "Box No_1",
+  purchaserEmail: "lalala@gmail.com",
+  itemVendor: "Rotaval",
+  materials: checkedMaterials,
 };
+
+export default function NewItemForm() {
+  const [checkedBoxes, updateCheckedBoxes] = useReducer(
+    (checkedBoxes, updates) => ({ ...checkedBoxes, ...updates }),
+    checkedMaterials
+  );
+
+  const [newItemData, updateItemData] = useReducer(
+    (newItemData, updates) => ({ ...newItemData, ...updates }),
+    itemData
+  );
+
+  console.log(newItemData);
 
   return (
     <Box
@@ -44,50 +58,59 @@ export default function NewItemForm() {
           label="Item Name/Code"
           multiline
           maxRows={4}
-          defaultValue="CNMG120408-WSM20S"
+          value={newItemData.itemName}
+          onChange={(e) => updateItemData({ itemName: e.target.value })}
         />
         <TextField
           id="outlined-multiline-flexible"
           label="Brand"
-          defaultValue="Walter"
+          value={newItemData.itemBrand}
+          onChange={(e) => updateItemData({ itemBrand: e.target.value })}
         />
 
         <TextField
           id="outlined-multiline-flexible"
           label="Brief Description"
           placeholder="Optional"
+          value={newItemData.description}
+          onChange={(e) => updateItemData({ description: e.target.value })}
         />
 
         <TextField
           id="outlined-multiline-flexible"
           label="Stock Qty"
-          defaultValue="10"
+          value={newItemData.currentQty}
+          onChange={(e) => updateItemData({ currentQty: e.target.value })}
         />
 
         <TextField
           id="outlined-multiline-flexible"
           label="Min Stock Qty"
-          defaultValue="5"
+          value={newItemData.minQty}
+          onChange={(e) => updateItemData({ minQty: e.target.value })}
         />
 
         <TextField
           id="outlined-multiline-flexible"
           label="Location Box No"
-          defaultValue="225"
+          value={newItemData.itemLocation}
+          onChange={(e) => updateItemData({ itemLocation: e.target.value })}
         />
 
         <TextField
           id="outlined-multiline-flexible"
           label="Supplier/Purchaser Email"
-          defaultValue="email@gmail.com"
+          value={newItemData.purchaserEmail}
+          onChange={(e) => updateItemData({ purchaserEmail: e.target.value })}
         />
         <TextField
           id="outlined-multiline-flexible"
           label="Vendor"
-          defaultValue="RotaVal Internal"
+          value={newItemData.itemVendor}
+          onChange={(e) => updateItemData({ itemVendor: e.target.value })}
         />
 
-        <TextField select label="Suitable materials" onChange={handleChange}>
+        <TextField select label="Suitable materials">
           <div className={styles.blue}>
             <MenuItem>
               <FormGroup>
@@ -95,7 +118,11 @@ export default function NewItemForm() {
                   sx={{ color: "white" }}
                   control={
                     <Checkbox
-                      onChange={handleCheckbox}
+                      checked={checkedBoxes.p}
+                      onChange={(e) => {
+                        updateCheckedBoxes({ p: e.target.checked });
+                        // updateItemData({ materials: checkedBoxes });
+                      }}
                       sx={{ color: "white" }}
                     />
                   }
@@ -110,7 +137,16 @@ export default function NewItemForm() {
               <FormGroup>
                 <FormControlLabel
                   sx={{ color: "white" }}
-                  control={<Checkbox sx={{ color: "white" }} />}
+                  control={
+                    <Checkbox
+                      checked={checkedBoxes.m}
+                      onChange={(e) => {
+                        updateCheckedBoxes({ m: e.target.checked });
+                        updateItemData({ materials: checkedBoxes });
+                      }}
+                      sx={{ color: "white" }}
+                    />
+                  }
                   label="M (Stainless St.)"
                 />
               </FormGroup>
@@ -121,7 +157,16 @@ export default function NewItemForm() {
               <FormGroup>
                 <FormControlLabel
                   sx={{ color: "white" }}
-                  control={<Checkbox sx={{ color: "white" }} />}
+                  control={
+                    <Checkbox
+                      checked={checkedBoxes.k}
+                      onChange={(e) => {
+                        updateCheckedBoxes({ k: e.target.checked });
+                        updateItemData({ materials: checkedBoxes });
+                      }}
+                      sx={{ color: "white" }}
+                    />
+                  }
                   label="K (Cast Iron)"
                 />
               </FormGroup>
@@ -132,7 +177,16 @@ export default function NewItemForm() {
               <FormGroup>
                 <FormControlLabel
                   sx={{ color: "white" }}
-                  control={<Checkbox sx={{ color: "white" }} />}
+                  control={
+                    <Checkbox
+                      checked={checkedBoxes.n}
+                      onChange={(e) => {
+                        updateCheckedBoxes({ n: e.target.checked });
+                        updateItemData({ materials: checkedBoxes });
+                      }}
+                      sx={{ color: "white" }}
+                    />
+                  }
                   label="N (Aluminium)"
                 />
               </FormGroup>
@@ -143,7 +197,16 @@ export default function NewItemForm() {
               <FormGroup>
                 <FormControlLabel
                   sx={{ color: "white" }}
-                  control={<Checkbox sx={{ color: "white" }} />}
+                  control={
+                    <Checkbox
+                      checked={checkedBoxes.s}
+                      onChange={(e) => {
+                        updateCheckedBoxes({ s: e.target.checked });
+                        updateItemData({ materials: checkedBoxes });
+                      }}
+                      sx={{ color: "white" }}
+                    />
+                  }
                   label="S (SuperAlloys)"
                 />
               </FormGroup>
@@ -154,7 +217,16 @@ export default function NewItemForm() {
               <FormGroup>
                 <FormControlLabel
                   sx={{ color: "white" }}
-                  control={<Checkbox sx={{ color: "white" }} />}
+                  control={
+                    <Checkbox
+                      checked={checkedBoxes.h}
+                      onChange={(e) => {
+                        updateCheckedBoxes({ h: e.target.checked });
+                        updateItemData({ materials: checkedBoxes });
+                      }}
+                      sx={{ color: "white" }}
+                    />
+                  }
                   label="H (Hard Iron/Steel)"
                 />
               </FormGroup>
